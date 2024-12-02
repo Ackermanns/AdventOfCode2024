@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "cJTGM7UCyXx5tZjJVIvdJYu/2UugV4SPoXMoEPkG6S1scvzanndOZYqKMYP6IHdX5fLI2gfRg4XqLhtP31t66w==",
+  "success": true,
+  "projectFilePath": "C:\\Projects\\AdventOfCode2024\\AdventOfCode2024\\AdventOfCode2024.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\simon\\.nuget\\packages\\mstest.testframework\\3.6.3\\mstest.testframework.3.6.3.nupkg.sha512"
+  ],
+  "logs": []
+}
