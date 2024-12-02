@@ -18,7 +18,9 @@ namespace AdventOfCode2024
         {
             string projectPath = Directory.GetParent(Environment.CurrentDirectory)?.Parent?.Parent?.Parent?.FullName;
             Console.WriteLine($"{projectPath}");
-            RunDay1_1();
+
+            RunDay1_2();
+            //RunDay1_1();
         }
 
         // Loads data from input files, should always be value for AoC
@@ -43,6 +45,17 @@ namespace AdventOfCode2024
             solution = day1.HistorianHysteria();
             timer.Stop();
             Console.WriteLine($"[{timer.Elapsed}] Day 1-1 Solution: {solution}");
+            timer.Restart();
+        }
+
+        private void RunDay1_2()
+        {
+            input = LoadData($"{projectPath}\\AdventOfCode2024\\Input\\Day 1\\day1-1.txt");
+            timer.Start();
+            Day1_2 day2 = new Day1_2(input);
+            solution = day2.HistorianHysteria();
+            timer.Stop();
+            Console.WriteLine($"[{timer.Elapsed}] Day 1-2 Solution: {solution}");
             timer.Restart();
         }
     }

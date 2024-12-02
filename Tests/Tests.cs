@@ -18,5 +18,14 @@ namespace AdventOfCode2024.Tests
             solution = day1.HistorianHysteria();
             Assert.AreEqual(11, solution);
         }
+
+        [TestMethod]
+        public void Test_Day1_2()
+        {
+            input = c.LoadData($"{projectPath}\\AdventOfCode2024\\Input\\Day 1\\day1-example.txt");
+            Day1_2 day2 = new Day1_2(input);
+            solution = day2.HistorianHysteria();
+            Assert.AreEqual(31, solution);
+        }
     }
 }

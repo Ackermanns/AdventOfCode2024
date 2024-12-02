@@ -4,14 +4,14 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace AdventOfCode2024.Days
 {
-    public class Day1_2
+    public class Day1_1
     {
         private string[] input;
         private List<int> list1 = new List<int>();
         private List<int> list2 = new List<int>();
         private int total;
 
-        public Day1_2(string[] input) {
+        public Day1_1(string[] input) {
             this.input = input;
         }
 
