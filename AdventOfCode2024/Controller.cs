@@ -18,7 +18,8 @@ namespace AdventOfCode2024
         {
             //RunDay1_1();
             //RunDay1_2();
-            RunDay2_1();
+            //RunDay2_1();
+            RunDay2_2();
         }
 
         // Loads data from input files, should always be value for AoC
@@ -65,6 +66,17 @@ namespace AdventOfCode2024
             solution = day2.RedNosedReports();
             timer.Stop();
             Console.WriteLine($"[{timer.Elapsed}] Day 2-1 Solution: {solution}");
+            timer.Restart();
+        }
+
+        private void RunDay2_2()
+        {
+            input = LoadData($"{projectPath}\\AdventOfCode2024\\Input\\day2-1.txt");
+            timer.Start();
+            Day2_2 day2 = new Day2_2(input);
+            solution = day2.RedNosedReports();
+            timer.Stop();
+            Console.WriteLine($"[{timer.Elapsed}] Day 2-2 Solution: {solution}");
             timer.Restart();
         }
     }

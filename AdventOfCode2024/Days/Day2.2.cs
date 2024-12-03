@@ -1,10 +1,11 @@
 ﻿
 
+using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
 
 namespace AdventOfCode2024.Days
 {
-    public class Day2_1
+    public class Day2_2
     {
         private string[] input;
 
@@ -13,10 +14,13 @@ namespace AdventOfCode2024.Days
         private bool isValidReport = true;
         private bool rule1Result = true;
         private bool rule2Result = true;
+        private bool dampenderUsed = false;
+        
+        private bool i;
 
         private int total;
 
-        public Day2_1(string[] input) {
+        public Day2_2(string[] input) {
             this.input = input;
         }
 
@@ -24,9 +28,9 @@ namespace AdventOfCode2024.Days
         {
             foreach (string r in input)
             {
-                string[] report = r.Split(" ");
+                List<string> report = r.Split(" ").ToList();
 
-                for (int i = 0; i != report.Length - 1; i++)
+                for (int i = 0; i != report.Count - 1; i++)
                 {
                     // Check for rule 1
                     rule1Result = CheckRule1(int.Parse(report[i]), int.Parse(report[i + 1]));
@@ -36,8 +40,17 @@ namespace AdventOfCode2024.Days
 
                     if (rule1Result == false || rule2Result == false)
                     {
-                        isValidReport = false;
-                        break;
+                        if (dampenderUsed == false)
+                        {
+                            dampenderUsed = true;
+                            report.RemoveAt(i+1);
+                            i = 0;
+                        }
+                        else
+                        {
+                            isValidReport = false;
+                            break;
+                        }
                     }
                 }
                 if (isValidReport == true)
@@ -49,6 +62,7 @@ namespace AdventOfCode2024.Days
                 isValidReport = true;
                 isAllIncreasing = true;
                 isAllDecreasing = true;
+                dampenderUsed = false;
             }
             return total;
         }

@@ -36,5 +36,14 @@ namespace AdventOfCode2024.Tests
             solution = day2.RedNosedReports();
             Assert.AreEqual(2, solution);
         }
+
+        [TestMethod]
+        public void Test_Day2_2()
+        {
+            input = c.LoadData($"{projectPath}\\AdventOfCode2024\\Input\\day2-example.txt");
+            Day2_2 day2 = new Day2_2(input);
+            solution = day2.RedNosedReports();
+            Assert.AreEqual(4, solution);
+        }
     }
 }
