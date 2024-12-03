@@ -13,7 +13,7 @@ namespace AdventOfCode2024.Tests
         [TestMethod]
         public void Test_Day1_1()
         {
-            input = c.LoadData($"{projectPath}\\AdventOfCode2024\\Input\\Day 1\\day1-example.txt");
+            input = c.LoadData($"{projectPath}\\AdventOfCode2024\\Input\\day1-example.txt");
             Day1_1 day1 = new Day1_1(input);
             solution = day1.HistorianHysteria();
             Assert.AreEqual(11, solution);
@@ -22,10 +22,19 @@ namespace AdventOfCode2024.Tests
         [TestMethod]
         public void Test_Day1_2()
         {
-            input = c.LoadData($"{projectPath}\\AdventOfCode2024\\Input\\Day 1\\day1-example.txt");
-            Day1_2 day2 = new Day1_2(input);
-            solution = day2.HistorianHysteria();
+            input = c.LoadData($"{projectPath}\\AdventOfCode2024\\Input\\day1-example.txt");
+            Day1_2 day1 = new Day1_2(input);
+            solution = day1.HistorianHysteria();
             Assert.AreEqual(31, solution);
+        }
+
+        [TestMethod]
+        public void Test_Day2_1()
+        {
+            input = c.LoadData($"{projectPath}\\AdventOfCode2024\\Input\\day2-example.txt");
+            Day2_1 day2 = new Day2_1(input);
+            solution = day2.RedNosedReports();
+            Assert.AreEqual(2, solution);
         }
     }
 }
