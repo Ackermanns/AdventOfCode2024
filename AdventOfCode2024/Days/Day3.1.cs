@@ -12,60 +12,61 @@ namespace AdventOfCode2024.Days
 
         private int num1;
         private int num2;
-        private bool hasClosingBracket = false;
+
+        private string sequence1;
+        private string sequence2;
 
         public Day3_1(string[] input) {
             this.input = input;
         }
 
-        private string GetSequenceTwoNum(string sequenceTwo)
+        private string ValidateSequence(string sequence)
         {
-            string currentSequenceTwo = "";
-            for (int i = 0; i != sequenceTwo.Length-1; i++)
+            string seq = "";
+            if (sequence.Contains(" ")) {
+                return "Bad";
+            }
+            for (int i = 0; i != sequence.Length; i++)
             {
-                if (int.TryParse(sequenceTwo[i].ToString(), out _) == true)
+                if (int.TryParse(sequence[i].ToString(), out _) == true)
                 {
-                    currentSequenceTwo += sequenceTwo[i];
+                    seq += sequence[i];
                 }
-
-                if (sequenceTwo[i + 1] == ')')
+                else
                 {
-                    hasClosingBracket = true;
-                    return currentSequenceTwo;
+                    return "Bad";
                 }
             }
-            return "";
+            return seq;
         }
 
         private bool ValidateInput(string sequence)
         {
-            // Check for two sequences are separated by a comma
+            // get two sequence blocks for further processing
             string[] sequences = sequence.Split(',');
-            if (sequences.Length != 2)
+            if (sequences.Length < 2)
             {
                 return false;
             }
-            // Check if both numbers length is greater than 0
-            if (sequences[0].Length == 0 || sequences[1].Length == 0) {
+            // Confirm closing bracket
+            if (sequences[1].Contains(')') == false) 
+            { 
                 return false;
             }
-            string sequenceTwoProcessed = GetSequenceTwoNum(sequences[1]);
-            // Check if sequence two has closing bracket
-            if (hasClosingBracket == false)
+            sequence1 = sequences[0];
+            sequence2 = sequences[1].Split(')')[0];
+            // Length check
+            if (sequence1.Length == 0 || sequence2.Length == 0)
             {
                 return false;
             }
+            sequence1 = ValidateSequence(sequence1);
+            sequence2 = ValidateSequence(sequence2);
             // Check both numbers are type int
-            if (int.TryParse(sequences[0], out _) == false || int.TryParse(sequenceTwoProcessed, out _) == false)
+            if (int.TryParse(sequence1, out num1) == false || int.TryParse(sequence2, out num2) == false)
             {
                 return false;
             }
-            
-
-
-            // All conditions met, can commit
-            num1 = int.Parse(sequences[0]);
-            num2 = int.Parse(sequenceTwoProcessed);
             return true;
         }
 
@@ -76,36 +77,25 @@ namespace AdventOfCode2024.Days
             int value;
             int difference;
 
-            // Validate all found Mul( for processing
+            // find all 'mul(' from input as potential values
             foreach (var line in this.input)
             {
                 string[] toProcess = line.Split("mul(");
                 foreach (var item in toProcess)
                 {
-                    if (item.Length <= 8)
-                    {
-                        //Console.WriteLine(item);
-                        potentialMuls.Add(item);
-                    }
-                    else
-                    {
-                        //Console.WriteLine(item);
-                        potentialMuls.Add(item.Substring(0,8));
-                    }
+                    potentialMuls.Add(item);
                 }
             }
 
+            // Process all 'mul(' found 
            foreach (var item in potentialMuls)
             {
                 bool isValid = ValidateInput(item);
                 if (isValid == true)
                 {
-                    Console.WriteLine($"mul({num1},{num2})");
                     total = total + (num1 * num2);
                 }
-                hasClosingBracket = false;
             }
-
             return total;
         }
     }
